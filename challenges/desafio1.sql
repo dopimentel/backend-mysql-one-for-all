@@ -5,8 +5,63 @@ CREATE TABLE SpotifyClone.plano
 (
     plano_id	INT PRIMARY KEY AUTO_INCREMENT,
     nome	VARCHAR(512) NOT NULL,
-    valor	DOUBLE
+    valor	DOUBLE NOT NULL
 );
+
+CREATE TABLE SpotifyClone.artista 
+(
+    artista_id	INT PRIMARY KEY AUTO_INCREMENT,
+    nome	VARCHAR(512) NOT NULL
+);
+
+CREATE TABLE SpotifyClone.user 
+(
+    pessoa_usuaria_id	INT PRIMARY KEY AUTO_INCREMENT,
+    nome_pessoa_usuaria	VARCHAR(512) NOT NULL,
+    idade	INT NOT NULL,
+    plano_id	INT NOT NULL,
+	FOREIGN KEY (plano_id) REFERENCES SpotifyClone.plano (plano_id)
+);
+
+CREATE TABLE SpotifyClone.album 
+(
+    album_id	INT PRIMARY KEY AUTO_INCREMENT,
+    name	VARCHAR(512) NOT NULL,
+    artista_id	INT NOT NULL,
+    ano_lancamento	YEAR NOT NULL,
+	FOREIGN KEY (artista_id) REFERENCES SpotifyClone.artista (artista_id)
+);
+
+
+CREATE TABLE SpotifyClone.cancao 
+(
+    cancao_id	INT PRIMARY KEY AUTO_INCREMENT,
+    name	VARCHAR(512) NOT NULL,
+    duracao_segundos	INT NOT NULL,
+    album_id	INT NOT NULL,
+    FOREIGN KEY (album_id) REFERENCES SpotifyClone.album (album_id)
+);
+
+CREATE TABLE SpotifyClone.historico 
+(
+    pessoa_usuaria_id	INT NOT NULL,
+    cancao_id	INT NOT NULL,
+    data_reproducao	DATETIME NOT NULL,
+	CONSTRAINT PRIMARY KEY(pessoa_usuaria_id, cancao_id),
+    FOREIGN KEY (pessoa_usuaria_id) REFERENCES SpotifyClone.user (pessoa_usuaria_id),
+    FOREIGN KEY (cancao_id) REFERENCES SpotifyClone.cancao (cancao_id)
+);
+
+CREATE TABLE SpotifyClone.seguindo_artistas 
+(
+    pessoa_usuaria_id	INT NOT NULL,
+    artista_id	INT NOT NULL,
+  CONSTRAINT PRIMARY KEY(pessoa_usuaria_id, artista_id),
+	FOREIGN KEY (pessoa_usuaria_id) REFERENCES SpotifyClone.user (pessoa_usuaria_id),
+	FOREIGN KEY (artista_id) REFERENCES SpotifyClone.artista (artista_id)
+);
+
+
 
 INSERT INTO SpotifyClone.plano (plano_id, nome, valor) VALUES ('1', 'gratuito', '0');
 INSERT INTO SpotifyClone.plano (plano_id, nome, valor) VALUES ('2', 'familiar', '7.99');
@@ -14,12 +69,6 @@ INSERT INTO SpotifyClone.plano (plano_id, nome, valor) VALUES ('3', 'universitá
 INSERT INTO SpotifyClone.plano (plano_id, nome, valor) VALUES ('4', 'pessoal', '6.99');
 
 
-
-CREATE TABLE SpotifyClone.artista 
-(
-    artista_id	INT PRIMARY KEY AUTO_INCREMENT,
-    nome	VARCHAR(512) NOT NULL
-);
 
 INSERT INTO SpotifyClone.artista (artista_id, nome) VALUES ('1', 'Beyoncé');
 INSERT INTO SpotifyClone.artista (artista_id, nome) VALUES ('2', 'Queen');
@@ -29,15 +78,6 @@ INSERT INTO SpotifyClone.artista (artista_id, nome) VALUES ('5', 'Blind Guardian
 INSERT INTO SpotifyClone.artista (artista_id, nome) VALUES ('6', 'Nina Simone');
 
 
-
-CREATE TABLE SpotifyClone.user 
-(
-    pessoa_usuaria_id	INT PRIMARY KEY AUTO_INCREMENT,
-    nome_pessoa_usuaria	VARCHAR(512),
-    idade	INT,
-    plano_id	INT,
-	FOREIGN KEY (plano_id) REFERENCES SpotifyClone.plano (plano_id)
-);
 
 INSERT INTO SpotifyClone.user (pessoa_usuaria_id, nome_pessoa_usuaria, idade, plano_id) VALUES ('1', 'Barbara Liskov', '82', '1');
 INSERT INTO SpotifyClone.user (pessoa_usuaria_id, nome_pessoa_usuaria, idade, plano_id) VALUES ('2', 'Robert Cecil Martin', '58', '1');
@@ -52,16 +92,6 @@ INSERT INTO SpotifyClone.user (pessoa_usuaria_id, nome_pessoa_usuaria, idade, pl
 
 
 
-
-CREATE TABLE SpotifyClone.album 
-(
-    album_id	INT PRIMARY KEY AUTO_INCREMENT,
-    name	VARCHAR(512),
-    artista_id	INT,
-    ano_lancamento	INT,
-	FOREIGN KEY (artista_id) REFERENCES SpotifyClone.artista (artista_id)
-);
-
 INSERT INTO SpotifyClone.album (album_id, name, artista_id, ano_lancamento) VALUES ('1', 'Renaissance', '1', '2022');
 INSERT INTO SpotifyClone.album (album_id, name, artista_id, ano_lancamento) VALUES ('2', 'Jazz', '2', '1978');
 INSERT INTO SpotifyClone.album (album_id, name, artista_id, ano_lancamento) VALUES ('3', 'Hot Space', '2', '1982');
@@ -72,14 +102,6 @@ INSERT INTO SpotifyClone.album (album_id, name, artista_id, ano_lancamento) VALU
 INSERT INTO SpotifyClone.album (album_id, name, artista_id, ano_lancamento) VALUES ('8', 'I Put A Spell On You', '6', '2012');
 
 
-CREATE TABLE SpotifyClone.cancao 
-(
-    cancao_id	INT PRIMARY KEY AUTO_INCREMENT,
-    name	VARCHAR(512),
-    duracao_segundos	INT,
-    album_id	INT,
-    FOREIGN KEY (album_id) REFERENCES SpotifyClone.album (album_id)
-);
 
 INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('1', '"BREAK MY SOUL"', '279', '1');
 INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('2', '"VIRGO\'S GROOVE"', '369', '1');
@@ -93,16 +115,6 @@ INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VA
 INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('10', '"Feeling Good"', '100', '8');
 
 
-
-CREATE TABLE SpotifyClone.historico 
-(
-    pessoa_usuaria_id	INT,
-    cancao_id	INT,
-    data_reproducao	DATETIME,
-	CONSTRAINT PRIMARY KEY(pessoa_usuaria_id, cancao_id),
-    FOREIGN KEY (pessoa_usuaria_id) REFERENCES SpotifyClone.user (pessoa_usuaria_id),
-    FOREIGN KEY (cancao_id) REFERENCES SpotifyClone.cancao (cancao_id)
-);
 
 INSERT INTO SpotifyClone.historico (pessoa_usuaria_id, cancao_id, data_reproducao) VALUES ('1', '8', '2022-02-28 10:45:55');
 INSERT INTO SpotifyClone.historico (pessoa_usuaria_id, cancao_id, data_reproducao) VALUES ('1', '2', '2020-05-02 05:30:35');
@@ -121,16 +133,6 @@ INSERT INTO SpotifyClone.historico (pessoa_usuaria_id, cancao_id, data_reproduca
 INSERT INTO SpotifyClone.historico (pessoa_usuaria_id, cancao_id, data_reproducao) VALUES ('9', '9', '2022-02-24 21:14:22');
 INSERT INTO SpotifyClone.historico (pessoa_usuaria_id, cancao_id, data_reproducao) VALUES ('10', '3', '2015-12-13 08:30:22');
 
-
-
-CREATE TABLE SpotifyClone.seguindo_artistas 
-(
-    pessoa_usuaria_id	INT,
-    artista_id	INT,
-  CONSTRAINT PRIMARY KEY(pessoa_usuaria_id, artista_id),
-	FOREIGN KEY (pessoa_usuaria_id) REFERENCES SpotifyClone.user (pessoa_usuaria_id),
-	FOREIGN KEY (artista_id) REFERENCES SpotifyClone.artista (artista_id)
-);
 
 INSERT INTO SpotifyClone.seguindo_artistas (pessoa_usuaria_id, artista_id) VALUES ('1', '1');
 INSERT INTO SpotifyClone.seguindo_artistas (pessoa_usuaria_id, artista_id) VALUES ('1', '2');
