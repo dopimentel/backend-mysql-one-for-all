@@ -103,16 +103,16 @@ INSERT INTO SpotifyClone.album (album_id, name, artista_id, ano_lancamento) VALU
 
 
 
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('1', '"BREAK MY SOUL"', '279', '1');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('2', '"VIRGO\'S GROOVE"', '369', '1');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('3', '"ALIEN SUPERSTAR"', '116', '1');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('4', '"Don\'t Stop Me Now"', '203', '2');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('5', '"Under Pressure"', '152', '3');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('6', '"Como Nossos Pais"', '105', '4');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('7', '"O Medo de Amar é o Medo de Ser Livre"', '207', '5');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('8', '"Samba em Paris"', '267', '6');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('9', '"The Bard\'s Song"', '244', '7');
-INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('10', '"Feeling Good"', '100', '8');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('1', 'BREAK MY SOUL', '279', '1');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('2', 'VIRGO\'S GROOVE', '369', '1');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('3', 'ALIEN SUPERSTAR', '116', '1');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('4', 'Don\'t Stop Me Now', '203', '2');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('5', 'Under Pressure', '152', '3');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('6', 'Como Nossos Pais', '105', '4');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('7', 'O Medo de Amar é o Medo de Ser Livre', '207', '5');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('8', 'Samba em Paris', '267', '6');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('9', 'The Bard\'s Song', '244', '7');
+INSERT INTO SpotifyClone.cancao (cancao_id, name, duracao_segundos, album_id) VALUES ('10', 'Feeling Good', '100', '8');
 
 
 
